@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# Angular cache / generated
+.angular/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# caches
+.cache/
+.npm/
+.pnpm-store/
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+

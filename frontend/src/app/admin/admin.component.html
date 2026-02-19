@@ -1,0 +1,57 @@
+<div class="admin-wrapper">
+  <div class="admin-header">
+    <div class="admin-header-inner">
+      <div class="title">
+        <span class="icon" aria-hidden="true">&#x1F373;</span>
+        <span>Admin Panel</span>
+      </div>
+      <div class="doc-count">{{ documents.length }} documents uploaded</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="upload-box">
+      <div class="upload-drop">
+        <div class="upload-icon" aria-hidden="true">&#x2B06;</div>
+
+        <h3>Upload Recipe PDFs</h3>
+        <p>Drag and drop PDF files here, or click to browse</p>
+
+        <input
+          type="file"
+          accept="application/pdf"
+          (change)="onFileSelected($event)"
+          hidden
+          #fileInput
+        >
+
+        <div class="upload-actions">
+          <button (click)="fileInput.click()">+ Choose Files</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="uploaded-section">
+      <h4>Uploaded Documents</h4>
+
+      <div *ngFor="let doc of documents; let i = index" class="doc-card">
+        <div class="doc-left">
+          <span class="doc-icon" aria-hidden="true">&#x1F4C4;</span>
+          <div>
+            <div class="doc-name">{{ doc.name }}</div>
+            <div class="doc-meta">
+              {{ doc.size }} &#x2022; {{ doc.pages }} pages &#x2022; {{ doc.date }}
+            </div>
+          </div>
+        </div>
+
+        <div class="doc-right">
+          <span class="status" [ngClass]="doc.status">{{ doc.status | titlecase }}</span>
+          <button class="icon-btn" type="button" (click)="removeDocument(i)" aria-label="Remove document">
+            &#x1F5D1;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

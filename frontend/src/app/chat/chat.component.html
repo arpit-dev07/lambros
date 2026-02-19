@@ -1,0 +1,38 @@
+<div class="chat-wrapper">
+  <div class="chat-header">
+    <div class="logo">&#x1F373; Recipe Assistant</div>
+    <div class="subtitle">Ask about uploaded recipes</div>
+  </div>
+
+  <div class="chat-container">
+    <div *ngIf="messages.length === 0" class="message ai">
+      &#x1F44B; Hi! I'm your AI Recipe Assistant. Ask anything about your recipe collection.
+    </div>
+
+    <div *ngFor="let msg of messages" class="message" [ngClass]="msg.role">
+      {{ msg.text }}
+    </div>
+
+    <div *ngIf="isLoading" class="message ai loading">
+      Thinking&#x2026;
+    </div>
+  </div>
+
+  <div class="input-bar">
+    <div class="input-inner">
+      <input
+        [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()"
+        placeholder="Ask about a recipe..."
+      />
+
+      <button
+        (click)="sendMessage()"
+        [disabled]="isLoading || !userInput.trim()"
+        aria-label="Send message"
+      >
+        &#x27A4;
+      </button>
+    </div>
+  </div>
+</div>

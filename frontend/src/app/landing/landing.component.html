@@ -1,0 +1,366 @@
+<div class="lp">
+  <header class="lp-nav">
+    <div class="lp-nav__inner">
+      <a class="lp-brand" routerLink="/">
+        <span class="lp-brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 10a5 5 0 0 1 10 0v2c0 .6.4 1 1 1h.5A2.5 2.5 0 0 1 21 15.5V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.5A2.5 2.5 0 0 1 5.5 13H6c.6 0 1-.4 1-1v-2Z"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9 10a3 3 0 0 1 6 0"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="lp-brand__text">AI Recipe Composer</span>
+      </a>
+
+      <nav class="lp-links" aria-label="Landing navigation">
+        <a href="#features" (click)="scrollTo($event, 'features')">Features</a>
+        <a href="#how" (click)="scrollTo($event, 'how')">How It Works</a>
+        <a href="#pricing" (click)="scrollTo($event, 'pricing')">Pricing</a>
+      </nav>
+
+      <div class="lp-actions">
+        <a class="lp-btn lp-btn--primary" routerLink="/admin">Start Creating</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="lp-main">
+    <section class="lp-hero" aria-label="Hero">
+      <div class="lp-hero__bg" aria-hidden="true"></div>
+      <div class="lp-hero__inner">
+        <div class="lp-pill">
+          <span class="lp-pill__spark" aria-hidden="true">✦</span>
+          <span>AI-Powered Culinary Innovation</span>
+        </div>
+
+        <h1 class="lp-hero__title">
+          Create New Recipes
+          <br>
+          from <span class="lp-accent">Your Own Knowledge</span>
+        </h1>
+
+        <p class="lp-hero__sub">
+          Upload your recipe collections and let AI analyze techniques, ingredients, and cooking styles to generate
+          entirely new, unique recipes tailored to your culinary vision.
+        </p>
+
+        <div class="lp-hero__cta">
+          <a class="lp-btn lp-btn--primary" routerLink="/admin">
+            Start Creating <span aria-hidden="true">→</span>
+          </a>
+          <a class="lp-btn lp-btn--ghost" href="#how" (click)="scrollTo($event, 'how')">See How It Works</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-section lp-section--light" id="how">
+      <h2 class="lp-h2">How It Works</h2>
+      <p class="lp-subtitle">
+        Three simple steps to transform your recipe collection into an infinite source of culinary inspiration.
+      </p>
+
+      <div class="lp-steps" role="list">
+        <div class="lp-step" role="listitem">
+          <div class="lp-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M8.5 6.5 12 3l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 14v4a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lp-step__kicker">STEP 1</div>
+          <h3 class="lp-h3">Upload Your Recipes</h3>
+          <p>Upload PDFs, notes, and cooking guides from your personal collection.</p>
+        </div>
+
+        <div class="lp-step" role="listitem">
+          <div class="lp-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M7 12a5 5 0 0 1 10 0v2c0 .6.4 1 1 1h.5A2.5 2.5 0 0 1 21 17.5V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-.5A2.5 2.5 0 0 1 5.5 15H6c.6 0 1-.4 1-1v-2Z"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path d="M9 12a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="lp-step__kicker">STEP 2</div>
+          <h3 class="lp-h3">AI Analyzes Everything</h3>
+          <p>Our AI extracts techniques, ingredients, flavor profiles, and cooking methods.</p>
+        </div>
+
+        <div class="lp-step" role="listitem">
+          <div class="lp-step__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M8 21h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path
+                d="M9 17h6M8.2 14.2A5.5 5.5 0 0 1 12 3a5.5 5.5 0 0 1 3.8 11.2c-.8.7-1.3 1.6-1.5 2.6H9.7c-.2-1-.7-1.9-1.5-2.6Z"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="lp-step__kicker">STEP 3</div>
+          <h3 class="lp-h3">Generate Unique Recipes</h3>
+          <p>Get brand-new recipes that blend your existing knowledge in creative ways.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-section lp-section--tint" id="features">
+      <h2 class="lp-h2">Powerful Features</h2>
+      <p class="lp-subtitle">Everything you need to unlock the full potential of your culinary knowledge.</p>
+
+      <div class="lp-featureGrid">
+        <article class="lp-card">
+          <div class="lp-card__icon" aria-hidden="true">&#x1F512;</div>
+          <h3 class="lp-card__title">Private Knowledge AI</h3>
+          <p>Your recipes stay yours. All processing is secure and private.</p>
+        </article>
+
+        <article class="lp-card">
+          <div class="lp-card__icon" aria-hidden="true">&#x1F9E9;</div>
+          <h3 class="lp-card__title">Recipe Synthesis</h3>
+          <p>Combine techniques from multiple recipes into something entirely new.</p>
+        </article>
+
+        <article class="lp-card">
+          <div class="lp-card__icon" aria-hidden="true">&#x1F916;</div>
+          <h3 class="lp-card__title">Creative AI Assistant</h3>
+          <p>Ask questions about your recipes and get instant, intelligent answers.</p>
+        </article>
+
+        <article class="lp-card">
+          <div class="lp-card__icon" aria-hidden="true">&#x1F4C4;</div>
+          <h3 class="lp-card__title">PDF Upload Support</h3>
+          <p>Upload any recipe document — cookbooks, handwritten notes, blogs.</p>
+        </article>
+
+        <article class="lp-card">
+          <div class="lp-card__icon" aria-hidden="true">&#x1F374;</div>
+          <h3 class="lp-card__title">Technique Extraction</h3>
+          <p>AI identifies and catalogs cooking methods across your entire library.</p>
+        </article>
+
+        <article class="lp-card">
+          <div class="lp-card__icon" aria-hidden="true">&#x1F50E;</div>
+          <h3 class="lp-card__title">Smart Ingredient Search</h3>
+          <p>Find recipes by ingredient, cuisine, or cooking technique instantly.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="lp-section lp-section--light" id="preview">
+      <h2 class="lp-h2">AI-Generated Recipe Preview</h2>
+      <p class="lp-subtitle">
+        Here's an example of what our AI creates by synthesizing your uploaded recipes.
+      </p>
+
+      <article class="lp-recipe">
+        <div class="lp-recipe__tag">✦ AI GENERATED</div>
+        <h3 class="lp-recipe__title">Miso-Glazed Citrus Salmon with Herb Quinoa</h3>
+        <p class="lp-recipe__desc">
+          A fusion recipe combining Japanese miso glazing techniques with Mediterranean herb profiles,
+          extracted from your uploaded cookbook collection.
+        </p>
+
+        <div class="lp-recipe__meta">
+          <span>&#x23F1; 35 min</span>
+          <span>&#x1F465; 4 servings</span>
+          <span>&#x1F525; Medium</span>
+        </div>
+
+        <div class="lp-recipe__sectionTitle">Key Ingredients</div>
+        <div class="lp-recipe__text">
+          Salmon fillets, white miso paste, yuzu juice, blood orange, fresh dill, quinoa, toasted sesame
+        </div>
+
+        <div class="lp-recipe__sectionTitle">Technique Sources</div>
+        <div class="lp-chips">
+          <span class="lp-chip">Japanese Glazing</span>
+          <span class="lp-chip">Herb Infusion</span>
+          <span class="lp-chip">Grain Pairing</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="lp-section lp-section--tint" id="why">
+      <h2 class="lp-h2">Why Chefs Love It</h2>
+      <p class="lp-subtitle">Built for professionals and enthusiasts who want more from their recipe collections.</p>
+
+      <div class="lp-why">
+        <article class="lp-whyCard">
+          <div class="lp-whyCard__icon" aria-hidden="true">&#x23F1;</div>
+          <h3 class="lp-h3">Save Experimentation Time</h3>
+          <p>Skip hours of trial and error. Let AI suggest proven flavor combinations from your own recipes.</p>
+        </article>
+        <article class="lp-whyCard">
+          <div class="lp-whyCard__icon" aria-hidden="true">&#x1F4A1;</div>
+          <h3 class="lp-h3">Discover New Combinations</h3>
+          <p>Uncover unexpected ingredient pairings and techniques you'd never think to try.</p>
+        </article>
+        <article class="lp-whyCard">
+          <div class="lp-whyCard__icon" aria-hidden="true">&#x2764;&#xFE0F;</div>
+          <h3 class="lp-h3">Keep Your Cooking Style</h3>
+          <p>Every generated recipe reflects your personal taste and culinary philosophy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="lp-section lp-section--light" id="testimonials">
+      <h2 class="lp-h2">Loved by Creators</h2>
+
+      <div class="lp-testimonials">
+        <article class="lp-quote">
+          <div class="lp-stars" aria-hidden="true">★★★★★</div>
+          <p>
+            "This tool has completely changed how I approach menu development. I uploaded 200+ recipes and discovered
+            combinations I'd never imagined."
+          </p>
+          <div class="lp-quote__who">
+            <div class="lp-quote__name">Chef Maria Santos</div>
+            <div class="lp-quote__role">Executive Chef, Saffron &amp; Sage</div>
+          </div>
+        </article>
+
+        <article class="lp-quote">
+          <div class="lp-stars" aria-hidden="true">★★★★★</div>
+          <p>
+            "As a fermentation enthusiast, the AI's ability to cross-reference techniques from different culinary
+            traditions is mind-blowing."
+          </p>
+          <div class="lp-quote__who">
+            <div class="lp-quote__name">Kenji Yamamoto</div>
+            <div class="lp-quote__role">Food Creator &amp; Author</div>
+          </div>
+        </article>
+
+        <article class="lp-quote">
+          <div class="lp-stars" aria-hidden="true">★★★★★</div>
+          <p>
+            "I saved weeks of experimentation. The generated recipes actually taste incredible because they're built on
+            proven techniques."
+          </p>
+          <div class="lp-quote__who">
+            <div class="lp-quote__name">Priya Gupta</div>
+            <div class="lp-quote__role">Culinary Innovator</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="lp-section lp-section--tint" id="pricing">
+      <h2 class="lp-h2">Simple Pricing</h2>
+      <p class="lp-subtitle">Start free, upgrade when you're ready.</p>
+
+      <div class="lp-pricing">
+        <article class="lp-priceCard">
+          <h3 class="lp-h3">Starter</h3>
+          <p class="lp-priceCard__desc">For curious cooks getting started</p>
+          <div class="lp-priceCard__price">Free</div>
+          <ul class="lp-list">
+            <li>5 recipe uploads</li>
+            <li>10 AI generations/month</li>
+            <li>Basic search</li>
+            <li>Community access</li>
+          </ul>
+          <button class="lp-btn lp-btn--tertiary" type="button">Get Started</button>
+        </article>
+
+        <article class="lp-priceCard lp-priceCard--highlight">
+          <div class="lp-badgeTop">Most Popular</div>
+          <h3 class="lp-h3">Pro</h3>
+          <p class="lp-priceCard__desc">For serious chefs and creators</p>
+          <div class="lp-priceCard__price">
+            $19<span class="lp-priceCard__per">/month</span>
+          </div>
+          <ul class="lp-list">
+            <li>Unlimited uploads</li>
+            <li>100 AI generations/month</li>
+            <li>Advanced technique extraction</li>
+            <li>Priority support</li>
+            <li>Export recipes</li>
+          </ul>
+          <button class="lp-btn lp-btn--primary" type="button">Start Free Trial</button>
+        </article>
+
+        <article class="lp-priceCard">
+          <h3 class="lp-h3">Team</h3>
+          <p class="lp-priceCard__desc">For culinary teams and restaurants</p>
+          <div class="lp-priceCard__price">
+            $49<span class="lp-priceCard__per">/month</span>
+          </div>
+          <ul class="lp-list">
+            <li>Everything in Pro</li>
+            <li>Unlimited generations</li>
+            <li>Team collaboration</li>
+            <li>API access</li>
+            <li>Custom branding</li>
+          </ul>
+          <button class="lp-btn lp-btn--tertiary" type="button">Contact Sales</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="lp-cta">
+      <div class="lp-cta__inner">
+        <h2 class="lp-cta__title">Ready to Transform Your Recipes?</h2>
+        <p class="lp-cta__sub">
+          Join thousands of chefs and food creators who are discovering new culinary possibilities every day.
+        </p>
+        <a class="lp-btn lp-btn--primary lp-btn--lg" routerLink="/admin">
+          Start Creating for Free <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lp-footer">
+    <div class="lp-footer__inner">
+      <div class="lp-footer__brand">
+        <span class="lp-brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 10a5 5 0 0 1 10 0v2c0 .6.4 1 1 1h.5A2.5 2.5 0 0 1 21 15.5V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.5A2.5 2.5 0 0 1 5.5 13H6c.6 0 1-.4 1-1v-2Z"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9 10a3 3 0 0 1 6 0"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span>AI Recipe Composer</span>
+      </div>
+
+      <div class="lp-footer__links">
+        <a href="#" (click)="$event.preventDefault()">Privacy</a>
+        <a href="#" (click)="$event.preventDefault()">Terms</a>
+        <a href="#" (click)="$event.preventDefault()">Contact</a>
+      </div>
+
+      <div class="lp-footer__copy">© 2026 AI Recipe Composer. All rights reserved.</div>
+    </div>
+  </footer>
+</div>

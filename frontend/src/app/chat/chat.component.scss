@@ -1,0 +1,111 @@
+.chat-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+}
+
+.chat-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+}
+
+.logo {
+  font-weight: 650;
+  font-size: 18px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+}
+
+.message {
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border-radius: var(--radius-lg);
+  max-width: min(720px, 78%);
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.message.ai {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.message.ai.loading {
+  opacity: 0.8;
+}
+
+.message.user {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #fff;
+  margin-left: auto;
+}
+
+.input-bar {
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  padding: 14px 16px;
+}
+
+.input-inner {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-inner input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+}
+
+.input-inner input::placeholder {
+  color: var(--text-muted);
+}
+
+.input-inner input:focus {
+  border-color: rgba(255, 106, 61, 0.55);
+  box-shadow: 0 0 0 4px rgba(255, 106, 61, 0.15);
+}
+
+.input-inner button {
+  width: 48px;
+  height: 48px;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #fff;
+  font-size: 16px;
+}
+
+.input-inner button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
