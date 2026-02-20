@@ -17,6 +17,17 @@ const batchArray = (items, batchSize) => {
 };
 
 const ingestionJobs = new Map();
+const documentsCache = new Map();
+
+const getDocumentsCacheTtlMs = () => {
+  const raw = Number.parseInt(process.env.DOCUMENTS_CACHE_TTL_MS || "20000", 10);
+  if (!Number.isFinite(raw) || raw <= 0) return 20000;
+  return raw;
+};
+
+const clearDocumentsCache = () => {
+  documentsCache.clear();
+};
 
 const ingestPDFFile = async (filePath, originalName) => {
   const text = await extractTextFromPDF(filePath);
@@ -80,6 +91,7 @@ const runIngestionJob = async (jobId) => {
   try {
     job.stats = await ingestPDFFile(job.path, job.file);
     job.status = "done";
+    clearDocumentsCache();
   } catch (err) {
     job.status = "failed";
     job.error = err?.message || "PDF ingestion failed";
@@ -107,6 +119,8 @@ export const uploadPDF = async (req, res) => {
       const stats = await ingestPDFFile(filePath, sourceFile);
       results.push({ sourceFile, path: filePath, ...stats });
     }
+
+    clearDocumentsCache();
 
     return res.json({ success: true, files: results });
   } catch (err) {
@@ -147,6 +161,7 @@ export const savePDF = async (req, res) => {
 
     if (shouldWait) {
       const stats = await ingestPDFFile(filePath, fileName);
+      clearDocumentsCache();
       return res.json({
         status: "ok",
         mode: "sync",
@@ -195,13 +210,15 @@ export const listDocuments = async (req, res) => {
   try {
     const limitRaw = req.query?.limit;
     const limitNum = Number(limitRaw);
-    const limit = Number.isFinite(limitNum) ? Math.min(1000, Math.max(1, Math.trunc(limitNum))) : 200;
+    const limit = Number.isFinite(limitNum) ? Math.min(1000, Math.max(1, Math.trunc(limitNum))) : 500;
 
     const initialPaginationToken =
       typeof req.query?.paginationToken === "string" ? req.query.paginationToken : undefined;
     const namespace = typeof req.query?.namespace === "string" ? req.query.namespace : undefined;
 
     const scanAll = String(req.query?.scanAll || "false").toLowerCase() === "true";
+    const exact = String(req.query?.exact || "false").toLowerCase() === "true";
+    const forceRefresh = String(req.query?.refresh || "false").toLowerCase() === "true";
     const scanPagesRaw = req.query?.scanPages;
     const scanPagesNum = Number(scanPagesRaw);
     const maxPagesRaw = req.query?.maxPages;
@@ -216,14 +233,34 @@ export const listDocuments = async (req, res) => {
         ? Math.min(maxPages, Math.max(1, Math.trunc(scanPagesNum)))
         : 5;
 
+    const cacheable = !initialPaginationToken && !forceRefresh;
+    const cacheKey = JSON.stringify({
+      namespace: namespace || "__default__",
+      scanAll,
+      exact,
+      limit,
+      scanPages,
+      maxPages,
+    });
+
+    if (cacheable) {
+      const cached = documentsCache.get(cacheKey);
+      const ttlMs = getDocumentsCacheTtlMs();
+      if (cached && Date.now() - cached.at < ttlMs) {
+        return res.json({ ...cached.data, cached: true, cacheAgeMs: Date.now() - cached.at });
+      }
+    }
+
     const counts = new Map();
     let pagesScanned = 0;
     let scannedRecords = 0;
     let paginationToken = initialPaginationToken;
     let lastNamespace = namespace || "__default__";
     let nextPaginationToken;
+    let stableSourcePages = 0;
 
     for (let page = 0; page < scanPages; page += 1) {
+      const previousSourceCount = counts.size;
       const result = await index.fetchByMetadata({
         filter: { sourceFile: { $exists: true } },
         limit,
@@ -245,23 +282,39 @@ export const listDocuments = async (req, res) => {
       nextPaginationToken = result.pagination?.next;
       if (!nextPaginationToken) break;
       paginationToken = nextPaginationToken;
+
+      if (counts.size === previousSourceCount) stableSourcePages += 1;
+      else stableSourcePages = 0;
+
+      if (scanAll && !exact && pagesScanned >= 3 && stableSourcePages >= 2) {
+        break;
+      }
     }
 
     const documents = [...counts.entries()]
       .map(([sourceFile, recordsInScan]) => ({ sourceFile, recordsInScan }))
       .sort((a, b) => a.sourceFile.localeCompare(b.sourceFile));
 
-    return res.json({
+    const response = {
       documents,
       scannedRecords,
       pagesScanned,
       nextPaginationToken,
       namespace: lastNamespace,
+      isApproximate: scanAll && !exact,
       note:
         nextPaginationToken && !scanAll
           ? "More results available. Pass paginationToken to continue scanning, or use scanAll=true."
+          : nextPaginationToken && scanAll && !exact
+            ? "Approximate scan completed early for speed. Pass exact=true for full exhaustive scan."
           : undefined,
-    });
+    };
+
+    if (cacheable) {
+      documentsCache.set(cacheKey, { at: Date.now(), data: response });
+    }
+
+    return res.json(response);
   } catch (err) {
     return res.status(500).json({ error: err?.message || "Failed to list documents" });
   }
@@ -293,6 +346,8 @@ export const deleteDocumentBySourceFile = async (req, res) => {
       filter: { sourceFile: { $eq: sourceFile } },
       namespace,
     });
+
+    clearDocumentsCache();
 
     return res.json({ success: true, deleted: "requested", sourceFile, namespace: namespace || null });
   } catch (err) {

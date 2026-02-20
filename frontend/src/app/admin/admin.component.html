@@ -1,21 +1,43 @@
 <div class="admin-wrapper">
   <div class="admin-header">
     <div class="admin-header-inner">
-      <div class="title">
-        <span class="icon" aria-hidden="true">&#x1F373;</span>
-        <span>Admin Panel</span>
+      <div class="title-block">
+        <a class="back-link" routerLink="/">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="title">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 10a5 5 0 0 1 10 0v2c0 .6.4 1 1 1h.5A2.5 2.5 0 0 1 21 15.5V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.5A2.5 2.5 0 0 1 5.5 13H6c.6 0 1-.4 1-1v-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 10a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>Admin Panel</span>
+        </div>
       </div>
-      <div class="doc-count">{{ documents.length }} documents uploaded</div>
+      <div class="doc-count">{{ documents.length }} documents tracked</div>
     </div>
   </div>
 
   <div class="content">
     <div class="upload-box">
-      <div class="upload-drop">
-        <div class="upload-icon" aria-hidden="true">&#x2B06;</div>
+      <div class="upload-head">
+        <h2>Upload Recipe PDFs</h2>
+        <p>Build your private recipe knowledge base from cookbooks, notes, and guides.</p>
+      </div>
 
-        <h3>Upload Recipe PDFs</h3>
-        <p>Drag and drop PDF files here, or click to browse</p>
+      <div class="upload-drop">
+        <div class="upload-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="m8.5 6.5 3.5-3.5 3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 14v4a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Drag and drop your files</h3>
+        <p>PDF files only, or click below to browse your device</p>
 
         <input
           type="file"
@@ -26,17 +48,36 @@
         >
 
         <div class="upload-actions">
-          <button (click)="fileInput.click()">+ Choose Files</button>
+          <button type="button" (click)="fileInput.click()" [disabled]="isUploading">
+            {{ isUploading ? 'Uploading...' : '+ Choose Files' }}
+          </button>
         </div>
       </div>
+
+      <div *ngIf="errorText" class="api-error">{{ errorText }}</div>
     </div>
 
     <div class="uploaded-section">
-      <h4>Uploaded Documents</h4>
+      <div class="section-header">
+        <h4>Uploaded Documents</h4>
+        <div class="section-actions">
+          <button class="refresh-btn" type="button" (click)="refreshDocuments()" [disabled]="isLoadingDocuments">
+            {{ isLoadingDocuments ? 'Refreshing...' : 'Refresh' }}
+          </button>
+          <span class="section-count">{{ documents.length }} total</span>
+          <button class="go-chat" type="button" (click)="openChat()">Open Chat</button>
+        </div>
+      </div>
 
       <div *ngFor="let doc of documents; let i = index" class="doc-card">
         <div class="doc-left">
-          <span class="doc-icon" aria-hidden="true">&#x1F4C4;</span>
+          <span class="doc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M8 3h6l4 4v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M14 3v5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 12h6M10 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
           <div>
             <div class="doc-name">{{ doc.name }}</div>
             <div class="doc-meta">
@@ -48,7 +89,9 @@
         <div class="doc-right">
           <span class="status" [ngClass]="doc.status">{{ doc.status | titlecase }}</span>
           <button class="icon-btn" type="button" (click)="removeDocument(i)" aria-label="Remove document">
-            &#x1F5D1;
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
           </button>
         </div>
       </div>

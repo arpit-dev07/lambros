@@ -5,14 +5,18 @@ import { AdminComponent } from './admin/admin.component';
 import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'chat', component: ChatComponent },
+  { path: '', component: LandingComponent, title: 'AI Recipe Composer' },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: 'admin', component: AdminComponent, title: 'Admin Panel' },
+  { path: 'chat', component: ChatComponent, title: 'Recipe Assistant' },
   { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

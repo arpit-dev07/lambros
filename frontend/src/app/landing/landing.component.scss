@@ -1,7 +1,16 @@
 .lp {
+  --lp-max-width: 1080px;
+  --lp-gutter: clamp(16px, 3vw, 24px);
+  --lp-nav-height: 68px;
+  --lp-section-pad: clamp(80px, 9vw, 116px);
+
   height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--lp-nav-height) + 18px);
   background: #fbf7f3;
   color: #111827;
   font-family: var(--font-family);
@@ -21,9 +30,10 @@
 }
 
 .lp-nav__inner {
-  max-width: 1160px;
+  max-width: var(--lp-max-width);
   margin: 0 auto;
-  padding: 14px 18px;
+  padding: 12px var(--lp-gutter);
+  min-height: var(--lp-nav-height);
   display: flex;
   align-items: center;
   gap: 18px;
@@ -62,7 +72,7 @@
 .lp-links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
   margin-left: auto;
   margin-right: 8px;
   font-size: 13px;
@@ -81,6 +91,7 @@
 .lp-actions {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .lp-btn {
@@ -115,6 +126,10 @@
   border-color: rgba(17, 24, 39, 0.12);
 }
 
+.lp-btn--nav {
+  background: #fff;
+}
+
 .lp-btn--tertiary {
   background: rgba(255, 255, 255, 0.65);
   color: rgba(17, 24, 39, 0.9);
@@ -128,9 +143,14 @@
 
 .lp-hero {
   position: relative;
-  padding: 92px 18px 88px;
+  min-height: calc(100vh - var(--lp-nav-height));
+  min-height: calc(100svh - var(--lp-nav-height));
+  padding: clamp(88px, 10vh, 120px) var(--lp-gutter) clamp(84px, 10vh, 112px);
   color: #fff;
   background: linear-gradient(180deg, #1b1b22, #0b0b10);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .lp-hero__bg {
@@ -141,17 +161,30 @@
     radial-gradient(900px circle at 50% 40%, rgba(255, 106, 61, 0.22), transparent 60%),
     radial-gradient(800px circle at 20% 0%, rgba(255, 206, 170, 0.14), transparent 55%),
     radial-gradient(800px circle at 95% 10%, rgba(255, 106, 61, 0.16), transparent 55%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65));
-  filter: saturate(1.15);
-  opacity: 0.95;
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.78)),
+    url('/assets/food.jpg') center / cover no-repeat;
+  filter: saturate(1.05) contrast(1.05);
+  opacity: 1;
+  transform: scale(1.02);
   pointer-events: none;
+}
+
+.lp-hero .lp-btn--ghost {
+  color: #111827;
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.lp-hero .lp-btn--ghost:hover {
+  background: #fff;
 }
 
 .lp-hero__inner {
   position: relative;
-  max-width: 980px;
+  max-width: 920px;
   margin: 0 auto;
   text-align: center;
+  width: 100%;
 }
 
 .lp-pill {
@@ -164,19 +197,26 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   font-size: 12px;
   color: rgba(255, 255, 255, 0.82);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .lp-pill__spark {
   color: rgba(255, 154, 120, 1);
+  display: inline-grid;
+  place-items: center;
+}
+
+.lp-pill__spark svg {
+  width: 12px;
+  height: 12px;
 }
 
 .lp-hero__title {
   font-family: var(--font-display);
-  font-size: 58px;
-  line-height: 0.98;
+  font-size: clamp(40px, 5.4vw, 64px);
+  line-height: 1.02;
   letter-spacing: -0.03em;
-  margin: 0 0 14px;
+  margin: 0 0 18px;
 }
 
 .lp-accent {
@@ -184,15 +224,15 @@
 }
 
 .lp-hero__sub {
-  max-width: 740px;
+  max-width: 720px;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.76);
-  line-height: 1.6;
-  font-size: 14px;
+  line-height: 1.7;
+  font-size: 16px;
 }
 
 .lp-hero__cta {
-  margin-top: 22px;
+  margin-top: 28px;
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -200,10 +240,14 @@
 }
 
 .lp-section {
-  max-width: 1160px;
+  padding: var(--lp-section-pad) 0;
+  scroll-margin-top: calc(var(--lp-nav-height) + 18px);
+}
+
+.lp-section__inner {
+  max-width: var(--lp-max-width);
   margin: 0 auto;
-  padding: 74px 18px;
-  scroll-margin-top: 84px;
+  padding: 0 var(--lp-gutter);
 }
 
 .lp-section--light {
@@ -218,19 +262,19 @@
 
 .lp-h2 {
   font-family: var(--font-display);
-  font-size: 44px;
+  font-size: clamp(30px, 3.4vw, 44px);
   letter-spacing: -0.02em;
   text-align: center;
-  margin: 0 0 10px;
+  margin: 0 0 14px;
 }
 
 .lp-subtitle {
   text-align: center;
   color: rgba(17, 24, 39, 0.62);
-  margin: 0 auto 30px;
+  margin: 0 auto 44px;
   max-width: 720px;
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .lp-h3 {
@@ -240,10 +284,10 @@
 }
 
 .lp-steps {
-  margin-top: 26px;
+  margin-top: 34px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: 26px;
   position: relative;
 }
 
@@ -251,7 +295,7 @@
   background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(17, 24, 39, 0.10);
   border-radius: 18px;
-  padding: 18px 16px 16px;
+  padding: 22px 18px 18px;
   text-align: center;
   box-shadow: 0 16px 40px rgba(17, 24, 39, 0.06);
 }
@@ -290,8 +334,8 @@
 .lp-featureGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 22px;
+  gap: 18px;
+  margin-top: 28px;
 }
 
 .lp-card {
@@ -311,6 +355,11 @@
   background: rgba(255, 106, 61, 0.10);
   border: 1px solid rgba(255, 106, 61, 0.18);
   margin-bottom: 10px;
+}
+
+.lp-card__icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .lp-card__title {
@@ -347,6 +396,11 @@
   margin-bottom: 10px;
 }
 
+.lp-recipe__tag svg {
+  width: 12px;
+  height: 12px;
+}
+
 .lp-recipe__title {
   font-family: var(--font-display);
   font-size: 22px;
@@ -367,6 +421,17 @@
   color: rgba(17, 24, 39, 0.62);
   font-size: 12px;
   margin-bottom: 12px;
+}
+
+.lp-metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lp-metaItem svg {
+  width: 15px;
+  height: 15px;
 }
 
 .lp-recipe__sectionTitle {
@@ -397,10 +462,10 @@
 }
 
 .lp-why {
-  margin-top: 22px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
   text-align: center;
 }
 
@@ -416,6 +481,11 @@
   color: #c2410c;
 }
 
+.lp-whyCard__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
 .lp-whyCard p {
   margin: 0;
   color: rgba(17, 24, 39, 0.62);
@@ -424,10 +494,10 @@
 }
 
 .lp-testimonials {
-  margin-top: 22px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 
 .lp-quote {
@@ -463,10 +533,10 @@
 }
 
 .lp-pricing {
-  margin-top: 22px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 18px;
   align-items: start;
 }
 
@@ -548,7 +618,7 @@
 
 .lp-cta__title {
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: clamp(32px, 4vw, 48px);
   letter-spacing: -0.02em;
   margin: 0 0 10px;
 }
@@ -567,9 +637,9 @@
 }
 
 .lp-footer__inner {
-  max-width: 1160px;
+  max-width: var(--lp-max-width);
   margin: 0 auto;
-  padding: 18px 18px;
+  padding: 18px var(--lp-gutter);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 14px;
@@ -606,36 +676,24 @@
 }
 
 @media (max-width: 980px) {
-  .lp-hero__title {
-    font-size: 46px;
-  }
-
-  .lp-h2 {
-    font-size: 36px;
-  }
-
-  .lp-cta__title {
-    font-size: 38px;
-  }
-
   .lp-featureGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .lp-testimonials {
-    grid-template-columns: 1fr;
-  }
-
-  .lp-pricing {
-    grid-template-columns: 1fr;
+  .lp-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lp-why {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .lp-steps {
-    grid-template-columns: 1fr;
+  .lp-testimonials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lp-pricing {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -644,8 +702,40 @@
     display: none;
   }
 
+  .lp-actions .lp-btn--nav {
+    display: none;
+  }
+
   .lp-nav__inner {
     justify-content: space-between;
+  }
+
+  .lp-brand__text {
+    font-size: 18px;
+  }
+
+  .lp-hero {
+    min-height: auto;
+    padding: 72px var(--lp-gutter) 68px;
+  }
+
+  .lp-hero__sub {
+    font-size: 15px;
+  }
+
+  .lp-hero__cta {
+    width: 100%;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lp-hero__cta .lp-btn {
+    width: 100%;
+  }
+
+  .lp-recipe__meta {
+    gap: 10px;
   }
 
   .lp-footer__inner {
@@ -655,5 +745,75 @@
 
   .lp-footer__copy {
     text-align: center;
+  }
+
+  .lp-footer__links {
+    flex-wrap: wrap;
+  }
+
+  .lp-steps,
+  .lp-why,
+  .lp-testimonials,
+  .lp-pricing,
+  .lp-featureGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp {
+    --lp-gutter: 14px;
+    --lp-nav-height: 62px;
+    --lp-section-pad: 56px;
+  }
+
+  .lp-nav__inner {
+    min-height: var(--lp-nav-height);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .lp-brand {
+    gap: 8px;
+  }
+
+  .lp-brand__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+  }
+
+  .lp-brand__text {
+    font-size: 16px;
+  }
+
+  .lp-actions .lp-btn {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .lp-hero__title {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+
+  .lp-hero__sub {
+    font-size: 14px;
+  }
+
+  .lp-subtitle {
+    margin-bottom: 26px;
+    font-size: 14px;
+  }
+
+  .lp-step,
+  .lp-card,
+  .lp-quote,
+  .lp-priceCard,
+  .lp-recipe {
+    padding: 14px;
+  }
+
+  .lp-priceCard__price {
+    font-size: 30px;
   }
 }

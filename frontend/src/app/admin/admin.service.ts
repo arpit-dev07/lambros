@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export interface DocumentInfo {
     sourceFile: string;
@@ -17,12 +18,14 @@ export interface DocumentsResponse {
 }
 
 export interface UploadResponse {
-    status: string;
-    mode: string;
-    message: string;
+    success?: boolean;
+    files?: Array<{ sourceFile: string; path: string; chunks?: number; records?: number }>;
+    status?: string;
+    mode?: string;
+    message?: string;
     jobId?: string;
-    file: string;
-    path: string;
+    file?: string;
+    path?: string;
     chunks?: number;
     records?: number;
 }
@@ -58,7 +61,11 @@ export class AdminService {
     uploadPdf(file: File): Observable<UploadResponse> {
         const formData = new FormData();
         formData.append('file', file, file.name);
-        return this.http.post<UploadResponse>(`${this.apiUrl}/save-pdf`, formData);
+        formData.append('uploadPDF', file, file.name);
+
+        return this.http.post<UploadResponse>(`${this.apiUrl}/save-pdf`, formData).pipe(
+            catchError(() => this.http.post<UploadResponse>(`${this.apiUrl}/upload`, formData))
+        );
     }
 
     /** Get status of an ingestion job */
@@ -67,9 +74,10 @@ export class AdminService {
     }
 
     /** List all documents from Pinecone */
-    listDocuments(scanAll = true): Observable<DocumentsResponse> {
+    listDocuments(scanAll = false): Observable<DocumentsResponse> {
+        const scanPages = scanAll ? 8 : 4;
         return this.http.get<DocumentsResponse>(
-            `${this.apiUrl}/documents?scanAll=${scanAll}`
+            `${this.apiUrl}/documents?scanAll=${scanAll}&scanPages=${scanPages}`
         );
     }
 

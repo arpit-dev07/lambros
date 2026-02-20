@@ -30,7 +30,8 @@
       </nav>
 
       <div class="lp-actions">
-        <a class="lp-btn lp-btn--primary" routerLink="/admin">Start Creating</a>
+        <a class="lp-btn lp-btn--ghost lp-btn--nav" routerLink="/chat">Open Assistant</a>
+        <a class="lp-btn lp-btn--primary" routerLink="/chat">Start Creating</a>
       </div>
     </div>
   </header>
@@ -40,7 +41,11 @@
       <div class="lp-hero__bg" aria-hidden="true"></div>
       <div class="lp-hero__inner">
         <div class="lp-pill">
-          <span class="lp-pill__spark" aria-hidden="true">✦</span>
+          <span class="lp-pill__spark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="m12 4 1.5 4.5L18 10l-4.5 1.5L12 16l-1.5-4.5L6 10l4.5-1.5L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </span>
           <span>AI-Powered Culinary Innovation</span>
         </div>
 
@@ -56,7 +61,7 @@
         </p>
 
         <div class="lp-hero__cta">
-          <a class="lp-btn lp-btn--primary" routerLink="/admin">
+          <a class="lp-btn lp-btn--primary" routerLink="/chat">
             Start Creating <span aria-hidden="true">→</span>
           </a>
           <a class="lp-btn lp-btn--ghost" href="#how" (click)="scrollTo($event, 'how')">See How It Works</a>
@@ -65,10 +70,11 @@
     </section>
 
     <section class="lp-section lp-section--light" id="how">
-      <h2 class="lp-h2">How It Works</h2>
-      <p class="lp-subtitle">
-        Three simple steps to transform your recipe collection into an infinite source of culinary inspiration.
-      </p>
+      <div class="lp-section__inner">
+        <h2 class="lp-h2">How It Works</h2>
+        <p class="lp-subtitle">
+          Three simple steps to transform your recipe collection into an infinite source of culinary inspiration.
+        </p>
 
       <div class="lp-steps" role="list">
         <div class="lp-step" role="listitem">
@@ -120,59 +126,99 @@
           <p>Get brand-new recipes that blend your existing knowledge in creative ways.</p>
         </div>
       </div>
+      </div>
     </section>
 
     <section class="lp-section lp-section--tint" id="features">
-      <h2 class="lp-h2">Powerful Features</h2>
-      <p class="lp-subtitle">Everything you need to unlock the full potential of your culinary knowledge.</p>
+      <div class="lp-section__inner">
+        <h2 class="lp-h2">Powerful Features</h2>
+        <p class="lp-subtitle">Everything you need to unlock the full potential of your culinary knowledge.</p>
 
       <div class="lp-featureGrid">
         <article class="lp-card">
-          <div class="lp-card__icon" aria-hidden="true">&#x1F512;</div>
+          <div class="lp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="11" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3 class="lp-card__title">Private Knowledge AI</h3>
           <p>Your recipes stay yours. All processing is secure and private.</p>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__icon" aria-hidden="true">&#x1F9E9;</div>
+          <div class="lp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 9a2 2 0 0 1 2-2h4v4H4V9Zm10-2h4a2 2 0 0 1 2 2v2h-6V7Zm6 6v2a2 2 0 0 1-2 2h-4v-4h6Zm-10 4H6a2 2 0 0 1-2-2v-2h6v4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <h3 class="lp-card__title">Recipe Synthesis</h3>
           <p>Combine techniques from multiple recipes into something entirely new.</p>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__icon" aria-hidden="true">&#x1F916;</div>
+          <div class="lp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="6" y="8" width="12" height="10" rx="3" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 4v3M9 18v2m6-2v2M4 12h2m12 0h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="10" cy="12" r="1" fill="currentColor"/>
+              <circle cx="14" cy="12" r="1" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="lp-card__title">Creative AI Assistant</h3>
           <p>Ask questions about your recipes and get instant, intelligent answers.</p>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__icon" aria-hidden="true">&#x1F4C4;</div>
+          <div class="lp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M8 3h6l4 4v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M14 3v5h4M10 12h6M10 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <h3 class="lp-card__title">PDF Upload Support</h3>
           <p>Upload any recipe document — cookbooks, handwritten notes, blogs.</p>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__icon" aria-hidden="true">&#x1F374;</div>
+          <div class="lp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M8 3v8M10 3v8M12 3v8M8 11v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M16 3v7a3 3 0 0 0 3 3v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3 class="lp-card__title">Technique Extraction</h3>
           <p>AI identifies and catalogs cooking methods across your entire library.</p>
         </article>
 
         <article class="lp-card">
-          <div class="lp-card__icon" aria-hidden="true">&#x1F50E;</div>
+          <div class="lp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="10.5" cy="10.5" r="5.5" stroke="currentColor" stroke-width="1.8"/>
+              <path d="m15 15 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3 class="lp-card__title">Smart Ingredient Search</h3>
           <p>Find recipes by ingredient, cuisine, or cooking technique instantly.</p>
         </article>
       </div>
+      </div>
     </section>
 
     <section class="lp-section lp-section--light" id="preview">
-      <h2 class="lp-h2">AI-Generated Recipe Preview</h2>
-      <p class="lp-subtitle">
-        Here's an example of what our AI creates by synthesizing your uploaded recipes.
-      </p>
+      <div class="lp-section__inner">
+        <h2 class="lp-h2">AI-Generated Recipe Preview</h2>
+        <p class="lp-subtitle">
+          Here's an example of what our AI creates by synthesizing your uploaded recipes.
+        </p>
 
       <article class="lp-recipe">
-        <div class="lp-recipe__tag">✦ AI GENERATED</div>
+        <div class="lp-recipe__tag">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m12 4 1.5 4.5L18 10l-4.5 1.5L12 16l-1.5-4.5L6 10l4.5-1.5L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          AI GENERATED
+        </div>
         <h3 class="lp-recipe__title">Miso-Glazed Citrus Salmon with Herb Quinoa</h3>
         <p class="lp-recipe__desc">
           A fusion recipe combining Japanese miso glazing techniques with Mediterranean herb profiles,
@@ -180,9 +226,28 @@
         </p>
 
         <div class="lp-recipe__meta">
-          <span>&#x23F1; 35 min</span>
-          <span>&#x1F465; 4 servings</span>
-          <span>&#x1F525; Medium</span>
+          <span class="lp-metaItem">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 8v4l2.5 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            35 min
+          </span>
+          <span class="lp-metaItem">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="8" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="16" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M3 19a5 5 0 0 1 10 0M11 19a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            4 servings
+          </span>
+          <span class="lp-metaItem">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3c2.5 3 4 5.2 4 7.8A4 4 0 0 1 12 15a4 4 0 0 1-4-4.2C8 8.2 9.5 6 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 15v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            Medium
+          </span>
         </div>
 
         <div class="lp-recipe__sectionTitle">Key Ingredients</div>
@@ -197,33 +262,51 @@
           <span class="lp-chip">Grain Pairing</span>
         </div>
       </article>
+      </div>
     </section>
 
     <section class="lp-section lp-section--tint" id="why">
-      <h2 class="lp-h2">Why Chefs Love It</h2>
-      <p class="lp-subtitle">Built for professionals and enthusiasts who want more from their recipe collections.</p>
+      <div class="lp-section__inner">
+        <h2 class="lp-h2">Why Chefs Love It</h2>
+        <p class="lp-subtitle">Built for professionals and enthusiasts who want more from their recipe collections.</p>
 
       <div class="lp-why">
         <article class="lp-whyCard">
-          <div class="lp-whyCard__icon" aria-hidden="true">&#x23F1;</div>
+          <div class="lp-whyCard__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 8v4l2.5 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <h3 class="lp-h3">Save Experimentation Time</h3>
           <p>Skip hours of trial and error. Let AI suggest proven flavor combinations from your own recipes.</p>
         </article>
         <article class="lp-whyCard">
-          <div class="lp-whyCard__icon" aria-hidden="true">&#x1F4A1;</div>
+          <div class="lp-whyCard__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3a6 6 0 0 1 3.8 10.6c-.8.7-1.3 1.6-1.5 2.6H9.7c-.2-1-.7-1.9-1.5-2.6A6 6 0 0 1 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.5 18h5M10.5 21h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <h3 class="lp-h3">Discover New Combinations</h3>
           <p>Uncover unexpected ingredient pairings and techniques you'd never think to try.</p>
         </article>
         <article class="lp-whyCard">
-          <div class="lp-whyCard__icon" aria-hidden="true">&#x2764;&#xFE0F;</div>
+          <div class="lp-whyCard__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 20s-6.5-4.6-8.6-8A5.2 5.2 0 0 1 12 6a5.2 5.2 0 0 1 8.6 6c-2.1 3.4-8.6 8-8.6 8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <h3 class="lp-h3">Keep Your Cooking Style</h3>
           <p>Every generated recipe reflects your personal taste and culinary philosophy.</p>
         </article>
       </div>
+      </div>
     </section>
 
     <section class="lp-section lp-section--light" id="testimonials">
-      <h2 class="lp-h2">Loved by Creators</h2>
+      <div class="lp-section__inner">
+        <h2 class="lp-h2">Loved by Creators</h2>
 
       <div class="lp-testimonials">
         <article class="lp-quote">
@@ -262,11 +345,13 @@
           </div>
         </article>
       </div>
+      </div>
     </section>
 
     <section class="lp-section lp-section--tint" id="pricing">
-      <h2 class="lp-h2">Simple Pricing</h2>
-      <p class="lp-subtitle">Start free, upgrade when you're ready.</p>
+      <div class="lp-section__inner">
+        <h2 class="lp-h2">Simple Pricing</h2>
+        <p class="lp-subtitle">Start free, upgrade when you're ready.</p>
 
       <div class="lp-pricing">
         <article class="lp-priceCard">
@@ -315,6 +400,7 @@
           <button class="lp-btn lp-btn--tertiary" type="button">Contact Sales</button>
         </article>
       </div>
+      </div>
     </section>
 
     <section class="lp-cta">
@@ -323,7 +409,7 @@
         <p class="lp-cta__sub">
           Join thousands of chefs and food creators who are discovering new culinary possibilities every day.
         </p>
-        <a class="lp-btn lp-btn--primary lp-btn--lg" routerLink="/admin">
+        <a class="lp-btn lp-btn--primary lp-btn--lg" routerLink="/chat">
           Start Creating for Free <span aria-hidden="true">→</span>
         </a>
       </div>

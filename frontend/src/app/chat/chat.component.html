@@ -1,20 +1,56 @@
 <div class="chat-wrapper">
   <div class="chat-header">
-    <div class="logo">&#x1F373; Recipe Assistant</div>
-    <div class="subtitle">Ask about uploaded recipes</div>
+    <div class="chat-header-inner">
+      <div class="title-block">
+        <a class="back-link" routerLink="/" aria-label="Back to home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div>
+          <div class="logo">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 10a5 5 0 0 1 10 0v2c0 .6.4 1 1 1h.5A2.5 2.5 0 0 1 21 15.5V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.5A2.5 2.5 0 0 1 5.5 13H6c.6 0 1-.4 1-1v-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 10a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Recipe Assistant
+          </div>
+          <div class="subtitle">Ask about uploaded recipes</div>
+        </div>
+      </div>
+      <div class="session-pill">{{ messages.length }} messages</div>
+    </div>
   </div>
 
-  <div class="chat-container">
-    <div *ngIf="messages.length === 0" class="message ai">
-      &#x1F44B; Hi! I'm your AI Recipe Assistant. Ask anything about your recipe collection.
+  <div class="chat-container" #chatContainer>
+    <div *ngIf="messages.length === 0" class="welcome-card">
+      <div class="welcome-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M13 4v9m0 0 2.4-2.4M13 13l-2.4-2.4M7.5 9.5V19a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4.5a2.5 2.5 0 0 1 5 0V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="message ai">
+        Hi! I'm your AI Recipe Assistant. Ask anything about your recipe collection. Try asking for ingredients,
+        substitutions, methods, or a recipe summary.
+      </div>
+    </div>
+
+    <div *ngIf="messages.length === 0" class="quick-prompts">
+      <button type="button" (click)="userInput = 'Suggest a complete dinner plan from my uploaded PDFs'">
+        Suggest a dinner plan
+      </button>
+      <button type="button" (click)="userInput = 'Find recipes with fermentation techniques'">
+        Find fermentation ideas
+      </button>
+      <button type="button" (click)="userInput = 'Summarize key techniques from my documents'">
+        Summarize techniques
+      </button>
     </div>
 
     <div *ngFor="let msg of messages" class="message" [ngClass]="msg.role">
-      {{ msg.text }}
-    </div>
-
-    <div *ngIf="isLoading" class="message ai loading">
-      Thinking&#x2026;
+      {{ msg.text }}<span *ngIf="msg.role === 'ai' && msg.isStreaming" class="typing-caret" aria-hidden="true"></span>
     </div>
   </div>
 
@@ -23,7 +59,7 @@
       <input
         [(ngModel)]="userInput"
         (keyup.enter)="sendMessage()"
-        placeholder="Ask about a recipe..."
+        placeholder="Ask about a recipe, ingredient, or method..."
       />
 
       <button
@@ -31,7 +67,9 @@
         [disabled]="isLoading || !userInput.trim()"
         aria-label="Send message"
       >
-        &#x27A4;
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m5 12 13-7-3.5 7L18 19l-13-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
     </div>
   </div>

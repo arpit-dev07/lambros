@@ -15,10 +15,7 @@ export class ChatService {
 
     constructor(private http: HttpClient) { }
 
-    askQuestion(question: string, includeSources = true): Observable<ChatResponse> {
-        return this.http.post<ChatResponse>(`${this.apiUrl}/ask?includeSources=${includeSources}`, {
-            question,
-            topK: 10
-        });
+    askQuestion(question: string): Observable<ChatResponse> {
+        return this.http.post<ChatResponse>(`${this.apiUrl}/ask`, { question });
     }
 }
