@@ -53,7 +53,7 @@ export interface DeleteResponse {
     providedIn: 'root'
 })
 export class AdminService {
-    private readonly apiUrl = 'http://localhost:3000/admin';
+    private readonly apiUrl = '/api/admin';
 
     constructor(private http: HttpClient) { }
 

@@ -12,8 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/admin", adminRoutes);
-app.use("/chat", chatRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {

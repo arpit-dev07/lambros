@@ -51,7 +51,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       },
       error: () => {
         aiMessage.isStreaming = false;
-        aiMessage.text = 'Sorry, something went wrong. Make sure the backend is running on localhost:3000.';
+        aiMessage.text = 'Sorry, something went wrong. Make sure the backend API is reachable at /api/chat.';
         this.persistMessages();
         this.isLoading = false;
         this.scrollToBottom();

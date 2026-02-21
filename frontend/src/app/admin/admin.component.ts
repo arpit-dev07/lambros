@@ -121,7 +121,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       error: (error: unknown) => {
         this.isLoadingDocuments = false;
         this.errorText = this.toErrorText(
-          'Could not fetch documents from /admin/documents',
+          'Could not fetch documents from /api/admin/documents',
           error
         );
       }

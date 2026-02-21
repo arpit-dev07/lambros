@@ -11,7 +11,7 @@ export interface ChatResponse {
     providedIn: 'root'
 })
 export class ChatService {
-    private readonly apiUrl = 'http://localhost:3000/chat';
+    private readonly apiUrl = '/api/chat';
 
     constructor(private http: HttpClient) { }
 

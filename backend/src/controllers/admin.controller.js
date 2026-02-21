@@ -190,7 +190,7 @@ export const savePDF = async (req, res) => {
       jobId: job.id,
       file: fileName,
       path: filePath,
-      check: `/admin/jobs/${job.id}`,
+      check: `/api/admin/jobs/${job.id}`,
     });
   } catch (err) {
     return res.status(500).json({ error: err?.message || "PDF ingestion failed" });
